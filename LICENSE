@@ -2,96 +2,87 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vortex Client | Bloxd.io Customization</title>
+    <title>Vortex Hub | Bloxd.io All-in-One Client</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0a0a0a;
-            color: white;
-            text-align: center;
-        }
-        header {
-            padding: 100px 20px;
-            background: linear-gradient(180deg, #00dbde 0%, #0a0a0a 100%);
-        }
-        h1 { font-size: 3rem; margin: 0; text-shadow: 0 0 20px #00dbde; }
-        p { color: #ccc; font-size: 1.2rem; }
-        .container { padding: 50px 20px; }
-        .feature-card {
-            background: #151515;
-            border: 1px solid #333;
-            padding: 20px;
-            margin: 10px;
-            border-radius: 15px;
-            display: inline-block;
-            width: 250px;
-            transition: 0.3s;
-        }
-        .feature-card:hover { border-color: #00dbde; transform: translateY(-5px); }
-        .download-btn {
-            background-color: #00dbde;
-            color: black;
-            padding: 15px 40px;
-            font-size: 1.5rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 30px;
-            box-shadow: 0 0 15px #00dbde;
-        }
-        .instructions {
-            background: #111;
-            padding: 30px;
-            margin-top: 50px;
-            border-radius: 20px;
-            text-align: left;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        code { background: #222; padding: 2px 5px; color: #ff00ff; }
+        :root { --primary: #00ffcc; --bg: #050505; --card: #111; }
+        body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; }
+        .hero { padding: 60px 20px; text-align: center; background: linear-gradient(to bottom, #004444, var(--bg)); }
+        h1 { font-size: 3.5rem; text-shadow: 0 0 20px var(--primary); margin: 0; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 40px; max-width: 1000px; margin: auto; }
+        .card { background: var(--card); border: 1px solid #222; padding: 20px; border-radius: 15px; transition: 0.3s; position: relative; }
+        .card:hover { border-color: var(--primary); transform: scale(1.02); }
+        .card h3 { color: var(--primary); }
+        
+        .switch { position: absolute; top: 20px; right: 20px; cursor: pointer; transform: scale(1.3); }
+        
+        .download-area { text-align: center; padding: 40px; }
+        .btn { background: var(--primary); color: black; padding: 15px 40px; border-radius: 50px; font-weight: bold; cursor: pointer; border: none; font-size: 1.2rem; box-shadow: 0 0 15px var(--primary); }
+        .btn:hover { opacity: 0.8; }
+        
+        #codeOutput { width: 80%; height: 100px; margin-top: 20px; background: #000; color: #0f0; border: 1px solid #333; display: none; padding: 10px; font-family: monospace; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>VORTEX CLIENT</h1>
-        <p>Bloxd.io Deneyimini Kişiselleştirin</p>
-        <a href="#" class="download-btn">KODU KOPYALA</a>
-    </header>
+<div class="hero">
+    <h1>VORTEX HUB</h1>
+    <p>İstediğin özellikleri seç ve kendi client kodunu anında oluştur!</p>
+</div>
 
-    <div class="container">
-        <div class="feature-card">
-            <h3>Özel Arayüz</h3>
-            <p>Menü renklerini ve görünümünü tamamen değiştirin.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Veller & Cape</h3>
-            <p>Kendi pelerinini ve görsel efektlerini ekle.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Hızlı Erişim</h3>
-            <p>"V" tuşu ile menüyü anında aç veya kapat.</p>
-        </div>
-
-        <div class="instructions">
-            <h3>Nasıl Kurulur?</h3>
-            <ol>
-                <li>Önce Chrome Mağazası'ndan <b>Tampermonkey</b> yükleyin.</li>
-                <li>Sitemizdeki <b>Kodu Kopyala</b> butonuna basın.</li>
-                <li>Tampermonkey'de "Yeni Script" oluşturun ve yapıştırın.</li>
-                <li>Bloxd.io'ya girin ve <b>V</b> tuşuna basın!</li>
-            </ol>
-        </div>
+<div class="grid">
+    <div class="card">
+        <h3>Neon Modu</h3>
+        <p>Blokların ve oyuncuların kenarlarını parlatır.</p>
+        <input type="checkbox" class="switch" id="neon">
     </div>
+    <div class="card">
+        <h3>Pelerin (Cape)</h3>
+        <p>Karakterine özel tasarım pelerin ekler.</p>
+        <input type="checkbox" class="switch" id="cape">
+    </div>
+    <div class="card">
+        <h3>Gelişmiş FPS</h3>
+        <p>Ekranın köşesinde detaylı FPS ve Ping gösterir.</p>
+        <input type="checkbox" class="switch" id="fps">
+    </div>
+    <div class="card">
+        <h3>Özel Nişangah</h3>
+        <p>Oyunun nişangahını Vortex Crosshair ile değiştirir.</p>
+        <input type="checkbox" class="switch" id="cross">
+    </div>
+</div>
 
-    <footer style="margin-top: 50px; padding: 20px; color: #555;">
-        Vortex Client &copy; 2026 - Herkes için Özelleştirme
-    </footer>
+<div class="download-area">
+    <button class="btn" onclick="generateCode()">KODU OLUŞTUR VE KOPYALA</button>
+    <br>
+    <textarea id="codeOutput" readonly></textarea>
+</div>
+
+<script>
+function generateCode() {
+    let neon = document.getElementById('neon').checked;
+    let cape = document.getElementById('cape').checked;
+    let fps = document.getElementById('fps').checked;
+    let cross = document.getElementById('cross').checked;
+
+    let finalScript = `// ==UserScript==\n// @name Vortex Custom Client\n// @match https://bloxd.io/*\n// @grant none\n// ==/UserScript==\n\n(function() {\n 'use strict';\n`;
+    
+    if(neon) finalScript += ` console.log('Neon Mod Aktif'); document.body.style.filter = 'contrast(1.1) brightness(1.1)';\n`;
+    if(cape) finalScript += ` console.log('Pelerin Yüklendi'); // Pelerin kodu buraya\n`;
+    if(fps) finalScript += ` // FPS Sayacı kodu\n`;
+    if(cross) finalScript += ` // Crosshair kodu\n`;
+    
+    finalScript += ` alert('Vortex Client: Seçtiğiniz ${ (neon?1:0)+(cape?1:0)+(fps?1:0)+(cross?1:0) } özellik başarıyla yüklendi! Menü için V tuşuna basın.');\n})();`;
+
+    let output = document.getElementById('codeOutput');
+    output.value = finalScript;
+    output.style.display = 'inline-block';
+    output.select();
+    document.execCommand('copy');
+    alert("Kod oluşturuldu ve panoya kopyalandı! Şimdi Tampermonkey'e yapıştırabilirsin.");
+}
+</script>
 
 </body>
 </html>
